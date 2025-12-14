@@ -20,8 +20,6 @@ body{
   margin:0;
   font-family: Inter, Arial, Helvetica, sans-serif;
   color:white;
-
-  /* Fondo */
   background-color:var(--bg);
   background-image: url("img/logo.png.jpg");
   background-repeat:no-repeat;
@@ -97,14 +95,6 @@ body{
   gap:8px;
 }
 
-.header-actions a{
-  color:white;
-  padding:6px 8px;
-  border-radius:6px;
-  text-decoration:none;
-  border:1px solid rgba(255,255,255,0.04);
-}
-
 .cart-btn{
   background:var(--accent-red);
   color:white;
@@ -136,7 +126,7 @@ main{
 }
 
 /* =========================================
-   GRID DE PRODUCTOS (3 columnas)
+   GRID DE PRODUCTOS
 ========================================= */
 .grid.productos-grid{
   display:grid;
@@ -151,66 +141,38 @@ main{
 .product-card{
   background:var(--card-bg);
   border-radius:10px;
-  padding:8px;
+  padding:10px;
   text-align:center;
-  position:relative;
-  overflow:hidden;
   border:1px solid rgba(255,255,255,0.04);
 }
 
-/* CARRUSEL */
+/* =========================================
+   CARRUSEL / IMÁGENES
+========================================= */
 .carousel{
   position:relative;
-  height:15rem;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:6px;
 }
 
 .carousel img{
-  width:15rem;
-  height:15rem;
+  width:100%;
+  height:280px;              /* ALTURA FIJA DESKTOP */
   object-fit:cover;
-  border-radius:6px;
-  display:block;
-  transition: transform .25s ease;
+  border-radius:8px;
+  cursor: zoom-in;
+  transition: transform 0.2s ease;
 }
 
-/* ocultar flechas si solo hay una imagen */
-.carousel.single-image .nav-arrow{
-  display:none !important;
+.carousel img:active{
+  transform: scale(0.97);
 }
 
-.nav-arrow{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  background:rgba(0,0,0,0.45);
-  color:white;
-  border:none;
-  width:30px;
-  height:30px;
-  border-radius:50%;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.nav-arrow.left{ left:6px }
-.nav-arrow.right{ right:6px }
-
+/* =========================================
+   TEXTO PRODUCTO
+========================================= */
 .product-card h3{
-  margin:8px 0 6px;
+  margin:10px 0 6px;
   font-size:1rem;
   color:var(--accent-blue);
-}
-
-.product-card p.desc{
-  font-size:0.85rem;
-  color:rgba(255,255,255,0.8);
-  min-height:36px;
 }
 
 .product-card p.price{
@@ -227,6 +189,7 @@ main{
   border-radius:8px;
   cursor:pointer;
   font-weight:700;
+  width:100%;
 }
 
 /* =========================================
@@ -241,434 +204,114 @@ main{
   background:linear-gradient(180deg, rgba(0,0,0,0.95), rgba(0,0,0,0.85));
   border-radius:10px;
   padding:14px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.6);
   transform:translateX(120%);
   transition:transform .28s ease;
   z-index:60;
-  color:white;
 }
 
 .cart-panel.open{ transform:translateX(0) }
 
-#cart-items{
-  list-style:none;
-  padding:0;
-  max-height:280px;
-  overflow:auto;
-  margin:8px 0;
+/* =========================================
+   MODAL IMAGEN
+========================================= */
+.image-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:100;
+  padding:20px;
 }
 
-#cart-items li{
+.image-modal.open{
   display:flex;
-  justify-content:space-between;
-  padding:6px 0;
-  border-bottom:1px dashed rgba(255,255,255,0.03);
 }
 
-.cart-total{
-  font-weight:800;
-  margin:10px 0;
-}
-
-.cart-actions{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-
-.btn{
-  display:inline-block;
+.modal-content{
+  background:#000;
+  border-radius:12px;
+  max-width:420px;
+  width:100%;
+  padding:16px;
   text-align:center;
-  padding:10px;
-  border-radius:8px;
-  text-decoration:none;
-  border:none;
+}
+
+.modal-content img{
+  width:100%;
+  max-height:70vh;
+  object-fit:contain;
+  border-radius:10px;
+}
+
+/* ANIMACIÓN ZOOM */
+.image-modal.open .modal-content img{
+  animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn{
+  from{
+    transform:scale(0.85);
+    opacity:0;
+  }
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+.close-modal{
+  position:absolute;
+  top:12px;
+  right:18px;
+  font-size:1.5rem;
   cursor:pointer;
 }
 
-.mp-btn{ background:var(--accent-blue);color:white }
-.wa-btn{ background:var(--accent-red);color:white }
-.clear-btn{ background:transparent;color:white;border:1px solid rgba(255,255,255,0.08) }
-
-/* =========================================
-   FOOTER
-========================================= */
-.site-footer{
-  text-align:center;
-  padding:18px 8px;
-  color:rgba(255,255,255,0.7);
+#modalPrice{
+  color:var(--accent-red);
+  font-weight:700;
+  font-size:1.2rem;
 }
 
 /* =========================================
    RESPONSIVE
 ========================================= */
-@media (max-width:980px){
+@media (max-width: 980px){
   .grid.productos-grid{
     grid-template-columns:repeat(2,1fr);
   }
 }
 
-@media (max-width:620px){
-  .header-inner{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:12px;
+@media (max-width: 768px){
+  .carousel img{
+    height:240px;           /* TABLET */
   }
 
+  .site-title{
+    text-align:center;
+    font-size:1.3rem;
+  }
+
+  .main-nav ul{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+}
+
+@media (max-width: 480px){
   .grid.productos-grid{
     grid-template-columns:1fr;
   }
 
-  .carousel{
-    height:3rem;
+  .carousel img{
+    height:200px;           /* CELULAR */
   }
 
-  .product-card .carousel img{
-    width:8rem;
-    height:8rem;
-  }
-
-  .cart-panel{
-    right:6px;
-    top:70px;
-    width:92%;
+  .logo-header{
+    width:60px;
+    margin:0 auto;
+    display:block;
   }
 }
-
-/* ICONOS IG / WA */
-.header-actions a img {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-  object-fit: cover;
-  padding: 2px;
-  background: #000;
-  transition: transform 0.2s ease, filter 0.2s ease;
-}
-
-.header-actions a:hover img {
-  transform: scale(1.12);
-  filter: brightness(1.25);
-}
-
-.social-icon {
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.08);
-  padding: 4px;
-  transition: transform 0.2s ease;
-}
-
-.social-icon:hover {
-  transform: scale(1.12);
-}
-
-.icon-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-}
-
-.icon-label {
-  font-size: 0.65rem;
-  color: rgba(255, 255, 255, 0.75);
-  margin-top: -2px;
-}
-
-/* (Eliminado el grid viejo duplicado de productos-container) */
-
-/*************************************************
- * CONFIGURACIÓN
- *************************************************/
-const CONFIG = {
-    instagramUrl: "https://www.instagram.com/racing_wear_ec",
-    whatsappNumber: "5492257542539",
-    mercadoPagoCheckoutUrl: "#"
-};
-
-/*************************************************
- * PRODUCTOS
- *************************************************/
-const productos = [
-    /* CAMPERAS */
-    { id: 1,  nombre: "Aston Martin", tipo: "f1", categoria: "f1", precio: 110000, imagenes: ["img/camperas/campera1.jpeg"] },
-    { id: 2,  nombre: "Formula 1 Pelicula", tipo: "f1", categoria: "f1", precio: 110000, imagenes: ["img/camperas/campera2.jpeg"] },
-    { id: 3,  nombre: "Ferrari Roja", tipo: "f1", categoria: "f1", precio: 110000, imagenes: ["img/camperas/campera3.jpeg"] },
-    { id: 4,  nombre: "Honda Ayrton Senna", tipo: "f1", categoria: "f1", precio: 110000, imagenes: ["img/camperas/campera4.jpeg"] },
-    { id: 5,  nombre: "Mercedes-Benz", categoria: "f1", precio: 110000, imagenes: ["img/camperas/campera5.jpeg"] },
-    { id: 6,  nombre: "McLaren", categoria: "f1", precio: 110000, imagenes: ["img/camperas/campera6.jpeg"] },
-    { id: 7,  nombre: "Red Bull", categoria: "f1", precio: 110000, imagenes: ["img/camperas/campera7.jpeg"] },
-    { id: 8,  nombre: "WRC Negra", tipo: "rally", categoria: "rally", precio: 110000, imagenes: ["img/camperas/campera8.jpeg"] },
-    { id: 9,  nombre: "Yamaha", categoria: "moto", precio: 110000, imagenes: ["img/camperas/campera9.jpeg"] },
-    { id: 10, nombre: "Red Bull Rompevientos", categoria: "f1", precio: 130000, imagenes: ["img/camperas/campera10.jpg"] },
-    { id: 11, nombre: "Suzuki Rompevientos", categoria: "moto", precio: 130000, imagenes: ["img/camperas/campera11.jpg"] },
-    { id: 12, nombre: "Ferrari Negra", categoria: "f1", precio: 110000, imagenes: ["img/camperas/campera12.jpg"] },
-    { id: 13, nombre: "McLaren Rompevientos", categoria: "f1", precio: 130000, imagenes: ["img/camperas/campera13.jpg"] },
-    { id: 14, nombre: "Dakar Azul", categoria: "rally", precio: 110000, imagenes: ["img/camperas/campera14.jpg"] },
-    { id: 15, nombre: "Ferrari Rompevientos", categoria: "f1", precio: 130000, imagenes: ["img/camperas/campera15.jpg"] },
-    { id: 16, nombre: "Mercedes-Benz Rompevientos", categoria: "f1", precio: 130000, imagenes: ["img/camperas/campera16.jpg"] },
-    { id: 17, nombre: "Dakar Roja", categoria: "rally", precio: 110000, imagenes: ["img/camperas/campera17.jpg"] },
-
-    /* REMERAS */
-    { id: 101, nombre: "Aston Martin", categoria: "f1", precio: 80000, imagenes: ["img/remeras/remera1.avif"] },
-    { id: 102, nombre: "Ferrari Roja", categoria: "f1", precio: 80000, imagenes: ["img/remeras/remera2.jpeg"] },
-    { id: 103, nombre: "Formula 1 Pelicula", categoria: "f1", precio: 80000, imagenes: ["img/remeras/remera3.jpeg"] },
-    { id: 104, nombre: "Mercedes-Benz", categoria: "f1", precio: 80000, imagenes: ["img/remeras/remera4.jpeg"] },
-    { id: 105, nombre: "McLaren", categoria: "f1", precio: 80000, imagenes: ["img/remeras/remera5.avif"] },
-    { id: 106, nombre: "Red Bull", categoria: "f1", precio: 80000, imagenes: ["img/remeras/remera6.jpeg"] },
-    { id: 107, nombre: "WRC Blanca", categoria: "rally", precio: 80000, imagenes: ["img/remeras/remera7.jpeg"] },
-    { id: 108, nombre: "WRC Negra", categoria: "rally", precio: 80000, imagenes: ["img/remeras/remera8.jpeg"] },
-    { id: 109, nombre: "Dakar Azul", categoria: "rally", precio: 80000, imagenes: ["img/remeras/remera9.jpg"] },
-    { id: 110, nombre: "Dakar Roja", categoria: "rally", precio: 80000, imagenes: ["img/remeras/remera10.jpg"] }
-];
-
-/*************************************************
- * CARRUSEL
- *************************************************/
-function createCarousel(imagenes) {
-    if (imagenes.length <= 1) {
-        return `
-            <div class="carousel">
-                <img src="${imagenes[0]}" class="single-image">
-            </div>
-        `;
-    }
-
-    return `
-        <div class="carousel">
-            <button class="prev">‹</button>
-            <img src="${imagenes[0]}" class="product-img">
-            <button class="next">›</button>
-        </div>
-    `;
-}
-
-/*************************************************
- * RENDERIZAR
- *************************************************/
-function renderProducts(list = productos) {
-    const camperasGrid = document.getElementById("camperas-grid");
-    const remerasGrid = document.getElementById("remeras-grid");
-
-    camperasGrid.innerHTML = "";
-    remerasGrid.innerHTML = "";
-
-    list.forEach(prod => {
-        const card = document.createElement("div");
-        card.classList.add("product-card");
-        card.dataset.category = prod.categoria;
-
-        card.innerHTML = `
-            ${createCarousel(prod.imagenes)}
-            <h3>${prod.nombre}</h3>
-            <p class="price">$${prod.precio}</p>
-            <button class="add-to-cart" data-id="${prod.id}">Agregar</button>
-        `;
-
-        if (prod.id <= 100) {
-            camperasGrid.appendChild(card);
-        } else {
-            remerasGrid.appendChild(card);
-        }
-    });
-
-    attachCarouselEvents();
-    attachAddToCartEvents();
-}
-
-/*************************************************
- * CARRUSEL EVENTOS
- *************************************************/
-function attachCarouselEvents() {
-    document.querySelectorAll(".carousel").forEach(carousel => {
-        const imgTag = carousel.querySelector(".product-img");
-        if (!imgTag) return;
-
-        const prodName = carousel.parentElement.querySelector("h3").textContent;
-        const prod = productos.find(p => p.nombre === prodName);
-
-        let index = 0;
-
-        carousel.querySelector(".prev").onclick = () => {
-            index = (index - 1 + prod.imagenes.length) % prod.imagenes.length;
-            imgTag.src = prod.imagenes[index];
-        };
-
-        carousel.querySelector(".next").onclick = () => {
-            index = (index + 1) % prod.imagenes.length;
-            imgTag.src = prod.imagenes[index];
-        };
-    });
-}
-
-/*************************************************
- * CARRITO
- *************************************************/
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-function addToCart(id) {
-    const item = cart.find(p => p.id === id);
-
-    if (item) {
-        if (item.cantidad >= 5) return;
-        item.cantidad++;
-    } else {
-        const prod = productos.find(p => p.id === id);
-        cart.push({ ...prod, cantidad: 1 });
-    }
-
-    saveCart();
-    updateCartUI();
-}
-
-function saveCart() {
-    localStorage.setItem("cart", JSON.stringify(cart));
-}
-
-function attachAddToCartEvents() {
-    document.querySelectorAll(".add-to-cart").forEach(btn => {
-        btn.onclick = () => addToCart(parseInt(btn.dataset.id));
-    });
-}
-
-function updateCartUI() {
-    const cartItems = document.getElementById("cart-items");
-    const cartCount = document.getElementById("cart-count");
-    const cartTotal = document.getElementById("cart-total");
-
-    cartItems.innerHTML = "";
-
-    let total = 0;
-    let cantidad = 0;
-
-    cart.forEach(item => {
-        total += item.precio * item.cantidad;
-        cantidad += item.cantidad;
-
-        cartItems.innerHTML += `
-            <li>
-                ${item.nombre} - $${item.precio} x ${item.cantidad}
-                <div>
-                    <button onclick="changeQuantity(${item.id}, -1)">−</button>
-                    <button onclick="changeQuantity(${item.id}, 1)">+</button>
-                    <button onclick="removeItem(${item.id})">✕</button>
-                </div>
-            </li>
-        `;
-    });
-
-    cartCount.textContent = cantidad;
-    cartTotal.textContent = `$${total}`;
-}
-
-function changeQuantity(id, delta) {
-    const item = cart.find(p => p.id === id);
-    if (!item) return;
-
-    if (delta === 1 && item.cantidad >= 5) return;
-
-    item.cantidad += delta;
-
-    if (item.cantidad <= 0) {
-        cart = cart.filter(p => p.id !== id);
-    }
-
-    saveCart();
-    updateCartUI();
-}
-
-function removeItem(id) {
-    cart = cart.filter(p => p.id !== id);
-    saveCart();
-    updateCartUI();
-}
-
-/*************************************************
- * FILTROS
- *************************************************/
-function applyFilter(category) {
-    const cards = document.querySelectorAll(".product-card");
-
-    cards.forEach(card => {
-        const prodCat = card.dataset.category;
-
-        if (category === "all" || prodCat === category) {
-            card.style.display = "block";
-        } else {
-            card.style.display = "none";
-        }
-    });
-}
-
-document.querySelectorAll(".filter-btn").forEach(btn => {
-    btn.onclick = () => applyFilter(btn.dataset.filter);
-});
-
-/*************************************************
- * CHECKOUT WHATSAPP
- *************************************************/
-document.getElementById("whatsappCheckout").onclick = () => {
-    if (cart.length === 0) return;
-
-    let mensaje = "Pedido Racing Wear EC:%0A%0A";
-
-    cart.forEach(item => {
-        mensaje += `${item.nombre} x ${item.cantidad} = $${item.precio * item.cantidad}%0A`;
-    });
-
-    const total = cart.reduce((s, i) => s + i.precio * i.cantidad, 0);
-    mensaje += `%0ATotal: $${total}`;
-
-    window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${mensaje}`, "_blank");
-};
-
-/*************************************************
- * PANEL CARRITO
- *************************************************/
-document.getElementById("toggle-cart").onclick = () => {
-    document.getElementById("cart-panel").classList.add("open");
-};
-
-document.getElementById("close-cart").onclick = () => {
-    document.getElementById("cart-panel").classList.remove("open");
-};
-
-/*************************************************
- * REDES SOCIALES
- *************************************************/
-document.getElementById("instagramLink").href = CONFIG.instagramUrl;
-document.getElementById("whatsappTop").href = `https://wa.me/${CONFIG.whatsappNumber}`;
-
-/*************************************************
- * INICIO
- *************************************************/
-renderProducts();
-updateCartUI();
-applyFilter("all");
-// ===== MODAL IMAGEN =====
-const modal = document.getElementById("imageModal");
-const modalImg = document.getElementById("modalImg");
-const modalTitle = document.getElementById("modalTitle");
-const modalDesc = document.getElementById("modalDesc");
-const modalPrice = document.getElementById("modalPrice");
-const closeModal = document.getElementById("closeModal");
-
-closeModal.addEventListener("click", () => {
-  modal.classList.remove("open");
-});
-
-// Función para abrir modal
-function openImageModal(product) {
-  modalImg.src = product.images[0];
-  modalTitle.textContent = product.name;
-  modalDesc.textContent = product.desc;
-  modalPrice.textContent = "$" + product.price;
-  modal.classList.add("open");
-}
-
-
-
-

@@ -266,6 +266,7 @@ document.getElementById("whatsappTop").href = `https://wa.me/${CONFIG.whatsappNu
 renderProducts();
 updateCartUI();
 applyFilter("all");
+
 // ===== MODAL IMAGEN =====
 const modal = document.getElementById("imageModal");
 const modalImg = document.getElementById("modalImg");

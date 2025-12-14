@@ -266,3 +266,24 @@ document.getElementById("whatsappTop").href = `https://wa.me/${CONFIG.whatsappNu
 renderProducts();
 updateCartUI();
 applyFilter("all");
+// ===== MODAL IMAGEN =====
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImg");
+const modalTitle = document.getElementById("modalTitle");
+const modalDesc = document.getElementById("modalDesc");
+const modalPrice = document.getElementById("modalPrice");
+const closeModal = document.getElementById("closeModal");
+
+closeModal.addEventListener("click", () => {
+  modal.classList.remove("open");
+});
+
+// Función para abrir modal
+function openImageModal(product) {
+  modalImg.src = product.images[0];
+  modalTitle.textContent = product.name;
+  modalDesc.textContent = product.desc;
+  modalPrice.textContent = "$" + product.price;
+  modal.classList.add("open");
+}
+

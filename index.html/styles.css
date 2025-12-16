@@ -1,4 +1,487 @@
 /* =========================================
+   VARIABLES DE COLOR
+========================================= */
+:root{
+  --accent-yellow: #e1c143;
+  --accent-blue: #0459ae;
+  --accent-red: #de1b38;
+
+  --bg: #000;
+  --card-bg: rgba(255,255,255,0.04);
+}
+
+/* =========================================
+   RESET Y BASE
+========================================= */
+*{ box-sizing:border-box }
+html,body{ height:100% }
+
+body{
+  margin:0;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  color:white;
+  background-color:var(--bg);
+  background-image: url("img/logo.png.jpg");
+  background-repeat:no-repeat;
+  background-position:center center;
+  background-size:cover;
+  background-attachment: fixed;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+.site-header{
+  backdrop-filter: blur(4px);
+  background: linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
+  position:sticky;
+  top:0;
+  z-index:40;
+  border-bottom: 2px solid rgba(255,255,255,0.03)
+}
+
+.header-inner{
+  display:flex;
+  gap:20px;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 18px;
+  max-width:1200px;
+  margin:0 auto;
+}
+
+.logo-header{
+  width:72px;
+  height:auto;
+  border-radius:6px;
+  border:2px solid rgba(255,255,255,0.06);
+}
+
+.title-and-nav{ flex:1; margin-left:10px }
+.site-title{ font-size:1.1rem;margin:0 0 6px }
+
+.main-nav ul{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.main-nav a,
+.filter-btn{
+  color:white;
+  text-decoration:none;
+  padding:6px 8px;
+  border-radius:6px;
+  border:1px solid transparent;
+}
+
+.main-nav a:hover,
+.filter-btn:hover{
+  background:rgba(255,255,255,0.04);
+}
+
+.filter-btn{
+  background:transparent;
+  cursor:pointer;
+  border:1px solid rgba(255,255,255,0.03);
+}
+
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.cart-btn{
+  background:var(--accent-red);
+  color:white;
+  border:none;
+  padding:8px 10px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* =========================================
+   MAIN
+========================================= */
+main{
+  max-width:1200px;
+  margin:24px auto;
+  padding:0 16px;
+}
+
+.catalogo{
+  background: linear-gradient(0deg, rgba(0,0,0,0.5), rgba(0,0,0,0.25));
+  padding:18px;
+  border-radius:10px;
+  margin-bottom:20px;
+}
+
+.catalogo h2{
+  margin:6px 0 14px;
+  color:var(--accent-yellow);
+}
+
+/* =========================================
+   GRID DE PRODUCTOS
+========================================= */
+.grid.productos-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:16px;
+  padding: 10px 0;
+}
+
+/* =========================================
+   PRODUCT CARD
+========================================= */
+.product-card{
+  background:var(--card-bg);
+  border-radius:10px;
+  padding:10px;
+  text-align:center;
+  border:1px solid rgba(255,255,255,0.04);
+}
+
+/* =========================================
+   CARRUSEL / IMÁGENES
+========================================= */
+.carousel{
+  position:relative;
+}
+
+.carousel img{
+  width:100%;
+  height:300px;              /* DESKTOP - TODAS IGUALES */
+  object-fit:cover;
+  border-radius:8px;
+  cursor: zoom-in;
+  transition: transform 0.2s ease;
+}
+
+.carousel img:active{
+  transform: scale(0.97);
+}
+
+/* =========================================
+   TEXTO PRODUCTO
+========================================= */
+.product-card h3{
+  margin:10px 0 6px;
+  font-size:1rem;
+  color:var(--accent-blue);
+}
+
+.product-card p.price{
+  font-weight:700;
+  color:var(--accent-red);
+  margin:8px 0;
+}
+
+.product-card button.add-btn{
+  background:var(--accent-yellow);
+  color:#000;
+  border:none;
+  padding:8px 10px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:700;
+  width:100%;
+}
+
+/* =========================================
+   CARRITO
+========================================= */
+.cart-panel{
+  position:fixed;
+  right:18px;
+  top:80px;
+  width:320px;
+  max-width:92%;
+  background:linear-gradient(180deg, rgba(0,0,0,0.95), rgba(0,0,0,0.85));
+  border-radius:10px;
+  padding:14px;
+  transform:translateX(120%);
+  transition:transform .28s ease;
+  z-index:60;
+}
+
+.cart-panel.open{ transform:translateX(0) }
+
+/* =========================================
+   MODAL IMAGEN
+========================================= */
+.image-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:100;
+  padding:20px;
+}
+
+.image-modal.open{
+  display:flex;
+}
+
+.modal-content{
+  background:#000;
+  border-radius:12px;
+  max-width:420px;
+  width:100%;
+  padding:16px;
+  text-align:center;
+}
+
+.modal-content img{
+  width:100%;
+  max-height:75vh;           /* MÁS GRANDE EN CELULAR */
+  object-fit:contain;
+  border-radius:10px;
+}
+
+/* ANIMACIÓN ZOOM */
+.image-modal.open .modal-content img{
+  animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn{
+  from{
+    transform:scale(0.85);
+    opacity:0;
+  }
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+.close-modal{
+  position:absolute;
+  top:12px;
+  right:18px;
+  font-size:1.5rem;
+  cursor:pointer;
+}
+
+#modalPrice{
+  color:var(--accent-red);
+  font-weight:700;
+  font-size:1.2rem;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+@media (max-width: 980px){
+  .grid.productos-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media (max-width: 768px){
+  .carousel img{
+    height:260px;           /* TABLET */
+  }
+
+  .site-title{
+    text-align:center;
+    font-size:1.3rem;
+  }
+
+  .main-nav ul{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+}
+
+@media (max-width: 480px){
+  .grid.productos-grid{
+    grid-template-columns:1fr;
+  }
+
+  .carousel img{
+    height:240px;           /* CELULAR - MÁS GRANDE */
+  }
+
+  .logo-header{
+    width:40px;
+    margin:0 auto;
+    display:block;
+  }
+}
+/* =========================================
+   AJUSTES MOBILE HEADER + CARRITO
+========================================= */
+
+@media (max-width: 480px) {
+
+  /* ---------- HEADER ---------- */
+
+  .header-inner{
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .title-and-nav{
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .site-title{
+    font-size: 1.25rem;
+    margin-bottom: 6px;
+  }
+
+  /* MENÚ EN 2 FILAS */
+  .main-nav ul{
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .main-nav li{
+    width: auto;
+  }
+
+  .filter{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .filter-btn{
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+
+  /* ICONOS + CARRITO */
+  .header-actions{
+    width: 100%;
+    justify-content: space-around;
+    margin-top: 6px;
+  }
+
+  .cart-btn{
+    width: auto;
+    padding: 8px 14px;
+    font-size: 1rem;
+  }
+
+  /* ---------- CARRITO ---------- */
+
+  .cart-panel{
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
+    right: auto;
+    top: 70px;
+    width: 95%;
+    max-width: 95%;
+  }
+
+  .cart-panel.open{
+    transform: translateX(-50%);
+  }
+
+  #cart-items li{
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.95rem;
+  }
+
+  .cart-actions{
+    gap: 10px;
+  }
+
+  .cart-actions .btn{
+    width: 100%;
+    font-size: 1rem;
+    padding: 12px;
+  }
+}
+
+/* =========================================
+   FIX REAL CARRITO MOBILE (sin transform)
+========================================= */
+@media (max-width: 480px){
+
+  /* Desactivar sistema viejo de ocultar */
+  .cart-panel{
+    left: 50%;
+    top: 85px;
+    right: auto;
+
+    transform: translateX(-50%) !important;
+
+    width: 92%;
+    max-width: 92%;
+    max-height: 70vh;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: opacity .25s ease;
+  }
+
+  /* Cuando se abre */
+  .cart-panel.open{
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) !important;
+  }
+
+  /* Scroll interno */
+  #cart-items{
+    max-height: 40vh;
+    overflow-y: auto;
+  }
+
+  /* Botones */
+  .cart-actions{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .cart-actions .btn{
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+  }
+}
+/* =========================================
+   FIX GRID MOBILE → 2 PRODUCTOS POR FILA
+========================================= */
+@media (max-width: 480px){
+  .grid.productos-grid{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+/* =========================================
+   MEJORA IMAGENES MOBILE (TOUCH)
+========================================= */
+@media (max-width: 480px){
+  .carousel img{
+    height: 220px;
+    object-fit: cover;
+  }
+
+  .carousel img:active{
+    transform: scale(0.95);
+  }
+}
+/* =========================================
    MODAL IMAGEN MOBILE FULL VIEW
 ========================================= */
 @media (max-width: 480px){
@@ -9,5 +492,90 @@
 
   .modal-content img{
     max-height: 85vh;
+  }
+}
+/* =========================================
+   ICONOS WHATSAPP / INSTAGRAM - DESKTOP
+========================================= */
+.social-icons img,
+.whatssap img,
+.instagram img{
+  width: 10px;
+  height: 10px;
+  object-fit: contain;
+}
+/* =========================================
+   ICONOS WHATSAPP / INSTAGRAM - MOBILE
+========================================= */
+@media (max-width: 480px){
+  .social-icons img,
+  .whatssapp img,
+  .instagram img{
+    width: 10px;
+    height: 10px;
+  }
+}
+/* =========================================
+   EFECTO TOQUE ICONOS
+========================================= */
+.social-icons a:active img,
+.whatssap a:active img,
+.instagram a:active img{
+  transform: scale(0.9);
+  transition: transform 0.15s ease;
+}
+/* =========================================
+   ICONOS SOCIALES – TAMAÑO REDUCIDO DESKTOP
+========================================= */
+.social-icons img,
+.whatsapp img,
+.instagram img{
+  width: 24px;
+  height: 24px;
+}
+/* =========================================
+   ICONOS SOCIALES – TAMAÑO REDUCIDO MOBILE
+========================================= */
+@media (max-width: 480px){
+  .social-icons img,
+  .whatsapp img,
+  .instagram img{
+    width: 32px;
+    height: 32px;
+  }
+}
+.social-icons img,
+.whatsapp img,
+.instagram img{
+  object-fit: contain;
+}
+/* =========================================
+   FIX DEFINITIVO ICONOS WHATSAPP / INSTAGRAM
+========================================= */
+
+/* Base (desktop) */
+.social-icons img,
+.whatsapp img,
+.instagram img{
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  transition: transform 0.15s ease;
+}
+
+/* Efecto click */
+.social-icons a:active img,
+.whatsapp a:active img,
+.instagram a:active img{
+  transform: scale(0.9);
+}
+
+/* Mobile */
+@media (max-width: 480px){
+  .social-icons img,
+  .whatsapp img,
+  .instagram img{
+    width: 32px;
+    height: 32px;
   }
 }

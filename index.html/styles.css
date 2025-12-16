@@ -579,3 +579,53 @@ main{
     height: 32px;
   }
 }
+/* ================================
+   FIX ICONOS EN COMPUTADORA
+================================ */
+
+/* Desktop */
+@media (min-width: 769px){
+
+  .social-icons{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .social-icons a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .social-icons img,
+  .whatsapp img,
+  .instagram img{
+    width: 22px;
+    height: 22px;
+    max-width: 22px;
+    max-height: 22px;
+    object-fit: contain;
+    display: block;
+  }
+}
+/* =========================================
+   FIX DEFINITIVO ICONOS SOCIALES – DESKTOP
+========================================= */
+
+@media (min-width: 481px){
+
+  .social-icons img,
+  .whatsapp img,
+  .instagram img{
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+  }
+
+  .social-icons a{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

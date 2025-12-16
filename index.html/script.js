@@ -12,14 +12,14 @@ const CONFIG = {
  *************************************************/
 const productos = [
     /* CAMPERAS */
-    { id: 1,  nombre: "Aston Martin", tipo: "f1", categoria: "f1", precio: 130000, imagenes: ["img/camperas/campera1.jpeg"] },
+    { id: 1,  nombre: "Aston Martin", tipo: "f1", categoria: "f1", precio:130000, imagenes: ["img/camperas/campera1.jpeg"] },
     { id: 2,  nombre: "Formula 1 Pelicula", tipo: "f1", categoria: "f1", precio: 130000, imagenes: ["img/camperas/campera2.jpeg"] },
     { id: 3,  nombre: "Ferrari Roja", tipo: "f1", categoria: "f1", precio: 130000, imagenes: ["img/camperas/campera3.jpeg"] },
     { id: 4,  nombre: "Honda Ayrton Senna", tipo: "f1", categoria: "f1", precio: 130000, imagenes: ["img/camperas/campera4.jpeg"] },
     { id: 5,  nombre: "Mercedes-Benz", categoria: "f1", precio: 130000, imagenes: ["img/camperas/campera5.jpeg"] },
-    { id: 6,  nombre: "McLaren", categoria: "f1", precio: 130000, imagenes: ["img/camperas/campera6.jpeg"] },
+    { id: 6,  nombre: "McLaren", categoria: "f1", precio:130000, imagenes: ["img/camperas/campera6.jpeg"] },
     { id: 7,  nombre: "Red Bull", categoria: "f1", precio: 130000, imagenes: ["img/camperas/campera7.jpeg"] },
-    { id: 8,  nombre: "WRC Negra", tipo: "rally", categoria: "rally", precio: 110000, imagenes: ["img/camperas/campera8.jpeg"] },
+    { id: 8,  nombre: "WRC Negra", tipo: "rally", categoria: "rally", precio:130000, imagenes: ["img/camperas/campera8.jpeg"] },
     { id: 9,  nombre: "Yamaha", categoria: "moto", precio: 130000, imagenes: ["img/camperas/campera9.jpeg"] },
     { id: 10, nombre: "Red Bull Rompevientos", categoria: "f1", precio: 130000, imagenes: ["img/camperas/campera10.jpg"] },
     { id: 11, nombre: "Suzuki Rompevientos", categoria: "moto", precio: 130000, imagenes: ["img/camperas/campera11.jpg"] },
@@ -287,5 +287,4 @@ function openImageModal(product) {
   modalPrice.textContent = "$" + product.price;
   modal.classList.add("open");
 }
-
 

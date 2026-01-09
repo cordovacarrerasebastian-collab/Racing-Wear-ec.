@@ -42,20 +42,19 @@ const productos = [
     { id: 110, nombre: "Dakar Roja", categoria: "rally", precio: 0, imagenes: ["img/remeras/remera10.jpg"] },
 
     /* BUZOS */
-    /* BUZOS */
-    { id: 201, nombre: "Jersey 1", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo1.jpg"] },
-    { id: 202, nombre: "Jersey 2", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo2.jpg"] },
-    { id: 203, nombre: "Jersey 3", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo3.jpg"] },
-    { id: 204, nombre: "Jersey 4", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo4.jpg"] },
-    { id: 205, nombre: "Jersey 5", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo5.jpg"] },
-    { id: 206, nombre: "Jersey 6", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo6.jpg"] },
-    { id: 207, nombre: "Jersey 7", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo7.jpg"] },
-    { id: 208, nombre: "Jersey 8", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo8.jpg"] },
-    { id: 209, nombre: "Jersey 9", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo9.jpg"] },
-    { id: 210, nombre: "Jersey 10", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo10.jpg"] },
-    { id: 211, nombre: "Jersey 11", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo11.jpg"] },
-    { id: 212, nombre: "Jersey 12", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo12.jpg"] },
-    { id: 213, nombre: "Jersey 13", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo13.jpg"] },
+    { id: 201, nombre: "Jersey ", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo1.jpg"] },
+    { id: 202, nombre: "Jersey ", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo2.jpg"] },
+    { id: 203, nombre: "Jersey ", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo3.jpg"] },
+    { id: 204, nombre: "Jersey ", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo4.jpg"] },
+    { id: 205, nombre: "Jersey ", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo5.jpg"] },
+    { id: 206, nombre: "Jersey ", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo6.jpg"] },
+    { id: 207, nombre: "Jersey ", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo7.jpg"] },
+    { id: 208, nombre: "Jersey ", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo8.jpg"] },
+    { id: 209, nombre: "Jersey ", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo9.jpg"] },
+    { id: 210, nombre: "Jersey ", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo10.jpg"] },
+    { id: 211, nombre: "Jersey ", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo11.jpg"] },
+    { id: 212, nombre: "Jersey ", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo12.jpg"] },
+    { id: 213, nombre: "Jersey ", categoria: "moto", precio: 0, imagenes: ["img/buzos/buzo13.jpg"] },
 ];
 
 /*************************************************
@@ -182,4 +181,5 @@ document.querySelectorAll(".filter-btn").forEach(btn => {
  * INIT
  *************************************************/
 renderProducts();
+
 
